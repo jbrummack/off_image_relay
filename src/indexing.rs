@@ -133,13 +133,13 @@ pub struct ImageInfo {
     uploaded_t: Option<Value>,
     imgid: Option<Value>,
 }
-
+/*
 pub struct AppState {}
 
 impl AppState {
     fn get_image() {}
     fn put_image(gtin: String) {}
-}
+} */
 
 pub fn index(path: &str) -> Result<(), Box<dyn std::error::Error>> {
     //std::fs::create_dir_all("state")?;

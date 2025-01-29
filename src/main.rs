@@ -14,6 +14,7 @@ mod routes;
 
 // Unable to find libclang: "couldn't find any valid shared libraries matching: ['libclang.so', 'libclang-*.so', 'libclang.so.*', 'libclang-*.so.*'], set the `LIBCLANG_PATH` environment variable to a path where one of t
 //i  #10 469.9   note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+#[allow(dead_code)]
 pub struct AppConfig {
     ssd_cache_ttl: usize,
     thumbnails_hot: bool,
@@ -74,20 +75,11 @@ async fn retrieve_dataset() -> Result<(), Box<dyn std::error::Error>> {
     if response.status().is_success() {
         // Open a file to save the downloaded content
         let mut dest = tokio::fs::File::create("dataset").await?;
-        //let mut dest = File::create("dataset")?;
-
-        // Stream the response body
-        //let stream = response.bytes().await?;
         let mut stream = response.bytes_stream();
         while let Some(item) = stream.next().await {
             //println!("Chunk: {:?}", item?);
             dest.write_all(&item?).await?;
         }
-
-        //let mut iter = stream.into_iter();
-        /*while let Some(buf) = response.chunk().await? {
-            dest.write_all(&buf).await?;
-        }*/
         info!("File downloaded successfully as: {}", "dataset");
     } else {
         error!("Failed to download file. Status: {}", response.status());

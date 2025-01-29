@@ -2,7 +2,6 @@ use std::sync::OnceLock;
 
 use log::info;
 use rocksdb::{Options, DB};
-use tokio::io::{AsyncReadExt, AsyncWriteExt};
 
 use crate::indexing::ProductWithImages;
 
@@ -84,7 +83,7 @@ pub fn get_product(gtin: String) -> Result<Option<ProductWithImages>, Box<dyn st
         Some(pld) => {
             let res = serde_json::from_slice(pld.as_slice()); //deserialize(pld.as_slice());
                                                               //println!("{res:?}");
-            if let Ok(Some(ProductWithImages { id, images })) = &res {
+            if let Ok(Some(ProductWithImages { id, images: _ })) = &res {
                 info!("Got {id}")
             }
             Ok(res?)
