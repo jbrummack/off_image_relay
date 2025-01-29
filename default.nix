@@ -16,6 +16,8 @@ pkgs.rustPlatform.buildRustPackage rec {
   buildInputs = with pkgs; [
     openssl
     llvmPackages_19.libclang
+    gcc
+    rocksdb
     # Add other runtime dependencies
   ];
 
