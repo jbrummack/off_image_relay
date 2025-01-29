@@ -1,0 +1,6 @@
+/target
+/state
+/idx_log
+/old
+/img_cache
+.DS_Store
