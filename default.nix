@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs ? import (fetchTarball "https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz") {} }:
 #export PATH=$PATH:/nix/var/nix/profiles/default/bin/
 pkgs.rustPlatform.buildRustPackage rec {
   pname = "off_image_relay";
