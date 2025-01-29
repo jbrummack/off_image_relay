@@ -16,14 +16,15 @@ pkgs.rustPlatform.buildRustPackage rec {
   buildInputs = with pkgs; [
     openssl
     llvmPackages_19.libclang
-    gcc
-    rocksdb
+    #gcc
+    #rocksdb
     # Add other runtime dependencies
   ];
 
   nativeBuildInputs = with pkgs; [
     pkg-config
     llvmPackages_19.libclang
+    rustPlatform.bindgenHook
   ];
 
   LIBCLANG_PATH = "${pkgs.llvmPackages_19.libclang.lib}/lib";
