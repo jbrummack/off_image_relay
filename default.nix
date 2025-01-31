@@ -1,4 +1,4 @@
-{ pkgs ? import (fetchTarball "https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz") {} }:
+{ pkgs ? import (fetchTarball "https://releases.nixos.org/nixos/24.11/nixos-24.11.713818.59e618d90c06/nixexprs.tar.xz") {} }: # #"https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz"
 #export PATH=$PATH:/nix/var/nix/profiles/default/bin/
 pkgs.rustPlatform.buildRustPackage rec {
   pname = "off_image_relay";
@@ -16,9 +16,6 @@ pkgs.rustPlatform.buildRustPackage rec {
   buildInputs = with pkgs; [
     openssl
     llvmPackages_19.libclang
-    #gcc
-    #rocksdb
-    # Add other runtime dependencies
   ];
 
   nativeBuildInputs = with pkgs; [
